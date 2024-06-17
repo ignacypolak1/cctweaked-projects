@@ -1,7 +1,7 @@
 # cctweaked-projects
 Projects of devices and systems programmed in Minecraft (CC: Tweaked and Advanced Peripherals mods) using lua on CraftOS system.
 ## Graphical Ore Detector
-Download it on your CraftOS machine using following command:
+Download it on your CraftOS machine using the following command:
 ```
 wget https://raw.githubusercontent.com/ignacypolak1/cctweaked-projects/main/OreDetector/startup.lua
 ```
