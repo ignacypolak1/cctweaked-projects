@@ -53,20 +53,20 @@ function M.getNeighbours(vector1)
         available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y - 1, vector1.z)
     end
 
-    -- Detect right/east
+    -- Detect left/west
     movement.turn("left")
     if not turtle.detect() then
-        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x + 1, vector1.y, vector1.z)
+        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x - 1, vector1.y, vector1.z)
     end
     -- Detect behind/south
     movement.turn("left")
     if not turtle.detect() then
         available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z + 1)
     end
-    -- Detect left/west
+    -- Detect right/east
     movement.turn("left")
     if not turtle.detect() then
-        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x - 1, vector1.y, vector1.z)
+        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x + 1, vector1.y, vector1.z)
     end
 
     return available_neighbours
@@ -112,6 +112,8 @@ function M.start(starting_point, ending_point)
     local last_cost
 
     while not arrived do
+        open_set = {}
+        
         local curr_x, curr_y, curr_z = gps.locate()
         local curr_vector = vector.new(math.floor(curr_x), math.floor(curr_y-0.13500), math.floor(curr_z))
         local curr_vector_string = M.vectorToString(curr_vector)
@@ -141,12 +143,12 @@ function M.start(starting_point, ending_point)
             local neighbour_key = M.vectorToString(neighbour)
             local cost = M.calculateManhattan(curr_vector, neighbour) + M.calculateEuclidean(neighbour, ending_point)
             if close_set[neighbour_key] == nil then
-                if open_set[neighbour_key] == nil or cost < open_set[neighbour_key] then
+                if open_set[neighbour_key] == nil then -- or cost < open_set[neighbour_key] then
                         open_set[neighbour_key] = cost
                 end 
             end
         end
-
+        
         local min_node_key, min_cost = M.getMinCostNode(open_set)
 
         if min_node_key then
