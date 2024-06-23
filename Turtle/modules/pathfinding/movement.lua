@@ -93,7 +93,7 @@ function M.moveToNode(vector1, vector2)
         end
     elseif (vector1.y ~= vector2.y) then
         if (vector2.y > vector1.y) then
-            return turtle.up()            
+            return turtle.up()           
         else
             return turtle.down()
         end
@@ -106,7 +106,20 @@ function M.moveToNode(vector1, vector2)
     end
 end
 
-function getCurrentFacing()
+function M.setFacingNorth()
+    if M._facing == "north" then
+        -- Do nothing
+    elseif M._facing == "east" then
+        M.turn("left")
+    elseif M._facing == "south" then
+        M.turn("left")
+        M.turn("left")
+    elseif M._facing == "west" then
+        M.turn("right")
+    end    
+end
+
+function M.getCurrentFacing()
     return M._facing
 end
 
