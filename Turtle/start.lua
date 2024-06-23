@@ -1,5 +1,8 @@
 package.path = "modules/?.lua;" .. package.path
-pathfinder = require("pathfinding.astar")
+
+local movement = require("pathfinding.movement")
+local pathfinder = require("pathfinding.astar")
+local digging = require("digging.excavate")
 
 function getLocation()
     local x, y, z = gps.locate()
@@ -7,8 +10,21 @@ function getLocation()
     return starting_point
 end
 
-local destination = vector.new(941, 130, 793)
-local base = vector.new(956, 118, 824)
+digging.excavate(4)
 
-pathfinder.start(getLocation(), destination)
-pathfinder.start(getLocation(), base)
+-- local destination = vector.new(941, 130, 793)
+-- local base = vector.new(956, 118, 824)
+
+-- while fuel_level > 1000 do
+--     pathfinder.start(getLocation(), destination)
+    
+--     if turtle then
+--     pathfinder.start(getLocation(), base)
+--     end
+-- end
+
+-- pathfinder.start(getLocation(), base)
+
+
+
+
