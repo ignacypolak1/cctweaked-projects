@@ -14,5 +14,6 @@ If you dont want to start this program automatically, just change name from star
 ```
 mv startup.lua <any name>.lua
 ```
-Ore detector 
 ![alt text](https://github.com/ignacypolak1/cctweaked-projects/blob/main/OreDetector/ore_detector.png?raw=true)
+## Turtle A* pathfinding
+### Work in progress!
