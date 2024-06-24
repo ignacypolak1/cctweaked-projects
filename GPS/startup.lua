@@ -2,7 +2,7 @@ function update_and_load_database()
     if settings.get("gps_database") then
         settings.load("gps_database")
     else
-        GPS_LN={x=984,y=149,z=845}
+        GPS_LN={x=121,y=123,z=-3}
         GPS_UN={x=GPS_LN.x, y=GPS_LN.y+3, z=GPS_LN.z}
 
         GPS_LS={x=GPS_LN.x, y=GPS_LN.y, z=GPS_LN.z+6}
