@@ -1,4 +1,4 @@
-facing = "north"
+local facing = "north"
 
 local function turn(direction)
     if direction == "left" then
