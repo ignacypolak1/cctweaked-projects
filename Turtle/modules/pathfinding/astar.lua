@@ -14,13 +14,13 @@ end
 local function getForward(movement, vector1)
     available_neighbours = {}
     if not turtle.detect() then
-        if movement.facing == "north" then
+        if facing == "north" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z-1)
-        elseif movement.facing == "south" then
+        elseif facing == "south" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z+1)
-        elseif movement.facing == "east" then
+        elseif facing == "east" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x+1, vector1.y, vector1.z)
-        elseif movement.facing == "west" then
+        elseif facing == "west" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x-1, vector1.y, vector1.z)
         end
     end
@@ -32,34 +32,31 @@ local function getNeighbours(movement, vector1)
 
     available_neighbours = {}
 
-    -- Detect forward/north
-    if not turtle.detect() then
-        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z - 1)
-    end
     -- Detect up
     if not turtle.detectUp() then
         available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y + 1, vector1.z)
     end
+
     -- Detect down
     if not turtle.detectDown() then
         available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y - 1, vector1.z)
     end
-    -- Detect left/west
-    movement.turn("left")
-    if not turtle.detect() then
-        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x - 1, vector1.y, vector1.z)
-    end
-    -- Detect behind/south
-    movement.turn("left")
-    if not turtle.detect() then
-        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z + 1)
-    end
-    -- Detect right/east
-    movement.turn("left")
-    if not turtle.detect() then
-        available_neighbours[#available_neighbours + 1] = vector.new(vector1.x + 1, vector1.y, vector1.z)
-    end
 
+    -- Detect all directions
+    for i=1, 4 do
+        if not turtle.detect() then
+            if facing == "north" then
+                available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z - 1)
+            elseif facing == "east" then
+                available_neighbours[#available_neighbours + 1] = vector.new(vector1.x + 1, vector1.y, vector1.z)
+            elseif facing == "south" then
+                available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z + 1)
+            elseif facing == "west" then
+                available_neighbours[#available_neighbours + 1] = vector.new(vector1.x - 1, vector1.y, vector1.z)
+            end
+        end
+        movement.turn("right")
+    end
     return available_neighbours
 end
 
@@ -120,7 +117,7 @@ local function start(movement, ending_point)
         local neighbours = getForward(movement, curr_vector) 
         if (neighbours[1] ~= nil and not first_run) then     
             local current_cost = calculateManhattan(curr_vector, neighbours[1]) + calculateEuclidean(neighbours[1], ending_point)
-
+            
             if (current_cost < last_cost) then
                 -- Do nothing
             else

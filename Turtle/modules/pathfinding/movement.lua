@@ -1,4 +1,4 @@
-local facing = "north"
+facing = "north"
 
 local function turn(direction)
     if direction == "left" then
@@ -117,4 +117,8 @@ local function setFacingNorth()
     end    
 end
 
-return {facing=facing, turn=turn, moveNorth=moveNorth, moveEast=moveEast, moveSouth=moveSouth, moveWest=moveWest, moveToNode=moveToNode, setFacingNorth=setFacingNorth}
+local function setFacingWest()
+    facing = "west"
+end
+
+return {turn=turn, moveNorth=moveNorth, moveEast=moveEast, moveSouth=moveSouth, moveWest=moveWest, moveToNode=moveToNode, setFacingNorth=setFacingNorth, setFacingWest=setFacingWest}
