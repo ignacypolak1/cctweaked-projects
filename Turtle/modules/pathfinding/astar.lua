@@ -19,13 +19,13 @@ function M.getForward(vector1)
     available_neighbours = {}
 
     if not turtle.detect() then
-        if facing == "north" then
+        if _G.facing == "north" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z-1)
-        elseif facing == "south" then
+        elseif _G.facing == "south" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z+1)
-        elseif facing == "east" then
+        elseif _G.facing == "east" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x+1, vector1.y, vector1.z)
-        elseif facing == "west" then
+        elseif _G.facing == "west" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x-1, vector1.y, vector1.z)
         end
     end

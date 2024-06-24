@@ -1,83 +1,83 @@
 M = {}
 
-facing = "north"
+_G.facing = "north"
 
 function M.turn(direction)
     if direction == "left" then
         turtle.turnLeft()
-        if facing == "north" then
-            facing = "west"
-        elseif facing == "west" then
-            facing = "south"
-        elseif facing == "south" then
-            facing = "east"
-        elseif facing == "east" then
-            facing = "north"
+        if _G.facing == "north" then
+            _G.facing = "west"
+        elseif _G.facing == "west" then
+            _G.facing = "south"
+        elseif _G.facing == "south" then
+            _G.facing = "east"
+        elseif _G.facing == "east" then
+            _G.facing = "north"
         end
     elseif direction == "right" then
         turtle.turnRight()
-        if facing == "north" then
-            facing = "east"
-        elseif facing == "east" then
-            facing = "south"
-        elseif facing == "south" then
-            facing = "west"
-        elseif facing == "west" then
-            facing = "north"
+        if _G.facing == "north" then
+            _G.facing = "east"
+        elseif _G.facing == "east" then
+            _G.facing = "south"
+        elseif _G.facing == "south" then
+            _G.facing = "west"
+        elseif _G.facing == "west" then
+            _G.facing = "north"
         end
     end
 end
 
 function M.moveNorth()
-    if facing == "north" then
+    if _G.facing == "north" then
         -- Do nothing
-    elseif facing == "west" then
+    elseif _G.facing == "west" then
         M.turn("right")
-    elseif facing == "south" then
+    elseif _G.facing == "south" then
         M.turn("right")
         M.turn("right")
-    elseif facing == "east" then
+    elseif _G.facing == "east" then
         M.turn("left")
     end
     turtle.forward()
 end
 
 function M.moveEast()
-    if facing == "north" then
+    if _G.facing == "north" then
         M.turn("right")
-    elseif facing == "west" then
+    elseif _G.facing == "west" then
         M.turn("right")
         M.turn("right")
-    elseif facing == "south" then
+    elseif _G.facing == "south" then
         M.turn("left")
-    elseif facing == "east" then
+    elseif _G.facing == "east" then
         -- Do nothing
     end
     turtle.forward()
 end
 
 function M.moveSouth()
-    if facing == "north" then
+    if _G.facing == "north" then
         M.turn("right")
         M.turn("right")
-    elseif facing == "west" then
+    elseif _G.facing == "west" then
         M.turn("left")
-    elseif facing == "south" then
+    elseif _G.facing == "south" then
         -- Do nothing
-    elseif facing == "east" then
+    elseif _G.facing == "east" then
         M.turn("right")
     end
     turtle.forward()
 end
 
 function M.moveWest()
-    if facing == "north" then
+    if _G.facing == "north" then
         M.turn("left")
-    elseif facing == "west" then
+    elseif _G.facing == "west" then
         -- Do nothing
-    elseif facing == "south" then
+    elseif _G.facing == "south" then
         M.turn("right")
-    elseif facing == "east" then
+    elseif _G.facing == "east" then
         M.turn("left")
         M.turn("left")
     end
@@ -107,14 +107,14 @@ function M.moveToNode(vector1, vector2)
 end
 
 function M.setFacingNorth()
-    if facing == "north" then
+    if _G.facing == "north" then
         -- Do nothing
-    elseif facing == "east" then
+    elseif _G.facing == "east" then
         M.turn("left")
-    elseif facing == "south" then
+    elseif _G.facing == "south" then
         M.turn("left")
         M.turn("left")
-    elseif facing == "west" then
+    elseif _G.facing == "west" then
         M.turn("right")
     end    
 end
