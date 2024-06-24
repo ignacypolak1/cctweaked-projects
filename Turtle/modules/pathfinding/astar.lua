@@ -120,7 +120,7 @@ local function start(movement, ending_point)
         local neighbours = getForward(movement, curr_vector) 
         if (neighbours[1] ~= nil and not first_run) then     
             local current_cost = calculateManhattan(curr_vector, neighbours[1]) + calculateEuclidean(neighbours[1], ending_point)
-            
+
             if (current_cost < last_cost) then
                 -- Do nothing
             else
@@ -134,7 +134,7 @@ local function start(movement, ending_point)
             local neighbour_key = vectorToString(neighbour)
             local cost = calculateManhattan(curr_vector, neighbour) + calculateEuclidean(neighbour, ending_point)
             if close_set[neighbour_key] == nil then
-                if open_set[neighbour_key] == nil then -- or cost < open_set[neighbour_key] then
+                if open_set[neighbour_key] == nil or cost < open_set[neighbour_key] then
                         open_set[neighbour_key] = cost
                 end 
             end
