@@ -18,8 +18,6 @@ end
 function M.getForward(vector1)
     available_neighbours = {}
 
-    local facing = movement.getCurrentFacing()
-
     if not turtle.detect() then
         if facing == "north" then
             available_neighbours[#available_neighbours + 1] = vector.new(vector1.x, vector1.y, vector1.z-1)
