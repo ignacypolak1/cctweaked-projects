@@ -1,8 +1,4 @@
-M = {}
-
-local movement = require("pathfinding.movement")
-
-function conditionalTurn(row, layer)
+local function conditionalTurn(movement, row, layer)
     if layer % 2 == 0 then
         if row % 2 == 0 then
             movement.turn("right")    
@@ -18,27 +14,27 @@ function conditionalTurn(row, layer)
     end
 end
 
-function turnAtEndOfRow(row, layer)
-    conditionalTurn(row, layer)
+local function turnAtEndOfRow(movement, row, layer)
+    conditionalTurn(movement, row, layer)
 
     turtle.dig()
     turtle.forward()
 
-    conditionalTurn(row, layer)
+    conditionalTurn(movement, row, layer)
 end
 
-function getDownUntilDetect()
+local function getDownUntilDetect()
     while not turtle.detectDown() do
         turtle.down()    
     end
 end
 
-function turn180()
+local function turn180(movement)
     movement.turn("right")
     movement.turn("right")
 end
 
-function M.excavate(square_size, relative_depth)
+local function excavate(movement, square_size, relative_depth)
     movement.setFacingNorth()
     movement.turn("right")
     
@@ -59,11 +55,11 @@ function M.excavate(square_size, relative_depth)
                 turtle.forward()
             end
             if(row ~= square_size) then
-                turnAtEndOfRow(row, layer) 
+                turnAtEndOfRow(movement, row, layer) 
             end 
         end
-        turn180()
+        turn180(movement)
     end
 end
 
-return M
+return {excavate=excavate}
