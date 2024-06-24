@@ -54,8 +54,13 @@ local function excavate(movement, square_size, relative_depth)
     getDownUntilDetect()
     
     for layer=1, relative_depth do
+        x,y,z = gps.locate()
         
         if turtle.getFuelLevel() < 1000 then
+            break
+        end
+
+        if math.floor(y) <= -120 then
             break
         end
 
