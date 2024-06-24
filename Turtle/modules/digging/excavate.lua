@@ -38,14 +38,18 @@ function turn180()
     movement.turn("right")
 end
 
-function M.excavate(square_size)
+function M.excavate(square_size, relative_depth)
     movement.setFacingNorth()
     movement.turn("right")
     
     getDownUntilDetect()
     
-    for layer=1, 3 do
+    for layer=1, relative_depth do
         
+        if turtle.getFuelLevel() < 1000 then
+            break
+        end
+
         turtle.digDown()
         turtle.down()
 

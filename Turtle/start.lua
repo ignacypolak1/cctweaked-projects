@@ -10,7 +10,7 @@ function getLocation()
     return starting_point
 end
 
-digging.excavate(4)
+digging.excavate(4, 2)
 
 -- local destination = vector.new(941, 130, 793)
 -- local base = vector.new(956, 118, 824)
