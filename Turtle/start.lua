@@ -22,7 +22,7 @@ while (fuel_level > 1000) do
    inventory.dropAllItems()
 end
 
-pathfinding.start(getLocation(), base)
+pathfinding.start(movement, base)
 
 
 
