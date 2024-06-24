@@ -35,9 +35,11 @@ local function turn180(movement)
 end
 
 local function return_procedure(starting_level)
-    x,y,z = gps.locate()
-    while math.floor(y) ~= starting_level do
+    local x,y,z = gps.locate()
+    
+    while math.floor(y) < starting_level do
         turtle.up()
+        x,y,z = gps.locate()
     end
 end
 
