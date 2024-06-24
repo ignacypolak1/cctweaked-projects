@@ -60,7 +60,7 @@ local function excavate(movement, square_size, relative_depth)
             break
         end
 
-        if math.floor(y) <= -120 then
+        if math.floor(y) <= -50 then
             break
         end
 
