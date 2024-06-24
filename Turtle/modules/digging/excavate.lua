@@ -35,14 +35,16 @@ local function turn180(movement)
 end
 
 local function return_procedure(starting_level)
-    while math.floor(gps.locate().y) ~= starting_level do
+    x,y,z = gps.locate()
+    while math.floor(y) ~= starting_level do
         turtle.up()
     end
 end
 
 local function excavate(movement, square_size, relative_depth)
     
-    local starting_level = math.floor(gps.locate().y)
+    x,y,z = gps.locate()
+    local starting_level = math.floor(y)
 
     movement.setFacingNorth()
     movement.turn("right")
