@@ -105,7 +105,7 @@ local function main()
                 for label, pos_vec in pairs(visible_nodes) do
                     draw_position(stringToVector(pos_vec))
                 end
-                os.sleep(1)
+                os.sleep(0.2)
             end
         end)
 end
