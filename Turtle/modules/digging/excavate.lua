@@ -38,6 +38,7 @@ local function return_procedure(starting_level)
     local x,y,z = gps.locate()
     
     while math.floor(y) < starting_level do
+        turtle.digUp()
         turtle.up()
         x,y,z = gps.locate()
     end
